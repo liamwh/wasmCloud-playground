@@ -1,0 +1,90 @@
+target
+Cargo.locks
+
+node_modules/
+
+# Ignore local DB files
+*.db
+*.db-*
+
+# Sentry CLI config
+.sentryclirc
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+**.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Locally generated SBOMs
+**/bom.xml
+
+build_rs_cov.profraw
+
+# Lcov files
+coverage/*
+
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+**/*.env*
+!.env.example
+
+# I love bacon, but not in my commits
+.bacon.toml
+
+docker/**/data
+
+**/frontend/src/bindings/*
+
+# Dependencies
+.pnp
+.pnp.js
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Testing
+coverage
+
+# Turbo
+.turbo
+
+# Vercel
+.vercel
+
+# Build Outputs
+.next/
+out/
+build
+dist
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+*.pem

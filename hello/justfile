@@ -10,15 +10,11 @@ export CARGO_TERM_COLOR := "always"
 default:
     @just --list --justfile {{justfile()}}
 
-# Start wasmCloud and the wash UI
-up:
-    cd ./docker && docker compose up -d
-    wash ui
+# Deploy this component
+deploy:
+    wash app deploy wadm.yaml
 
-# Restart the wasmCloud stack
-restart:
-    cd ./docker && docker compose restart
 
-# Stop wasmCloud stack
-down:
-    cd ./docker && docker compose down
+# Build this component
+build:
+    wash build

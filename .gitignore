@@ -3,7 +3,10 @@ Cargo.locks
 
 node_modules/
 
+# Ignore 
+_wash
 **/keys/
+
 # Ignore local DB files
 *.db
 *.db-*
@@ -44,7 +47,9 @@ build_rs_cov.profraw
 # Lcov files
 coverage/*
 
-/build
+build/**
+!**/.gitkeep
+
 /.svelte-kit
 /package
 .env
@@ -80,7 +85,6 @@ coverage
 # Build Outputs
 .next/
 out/
-build
 dist
 
 # Debug

@@ -28,15 +28,15 @@ services:
       - 4318:4318 # otlp http
       - 7999:7999 # tempo
 
-  loki:
-    image: grafana/loki:2.9.4
-    command:
-      - "-config.file=/etc/loki/config.yaml"
-    volumes:
-      - ./config/loki.yaml:/etc/loki/config.yaml
-    ports:
-      - 3100:3100
-    restart: unless-stopped
+  # loki:
+  #   image: grafana/loki:2.9.4
+  #   command:
+  #     - "-config.file=/etc/loki/config.yaml"
+  #   volumes:
+  #     - ./config/loki.yaml:/etc/loki/config.yaml
+  #   ports:
+  #     - 3100:3100
+  #   restart: unless-stopped
 
   registry:
     image: registry:2.8
@@ -74,6 +74,8 @@ services:
       - "nats"
       - "tempo"
     image: wasmcloud/wasmcloud:latest
+    volumes:
+      - ./../build:/build
     environment:
       RUST_LOG: debug,hyper=info,async_nats=info,oci_distribution=info,cranelift_codegen=warn
       WASMCLOUD_LOG_LEVEL: debug
@@ -91,4 +93,5 @@ services:
       - "nats"
     image: ghcr.io/wasmcloud/wadm:latest
     environment:
-      - WADM_NATS_SERVER=nats
+      WADM_NATS_SERVER: nats
+      RUST_LOG: info

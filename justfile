@@ -4,21 +4,29 @@
 
 set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
 set dotenv-load := true
-export CARGO_TERM_COLOR := "always"
 
 # Show available commands
 default:
     @just --list --justfile {{justfile()}}
 
-# Start wasmCloud and the wash UI
-up:
+# Start wasmCloud
+up-no-openfga:
     cd ./docker && docker compose up -d
-    wash ui
+
+# Start wasmCloud with OpenFGA
+up:
+    cd ./docker && docker compose -f compose.yaml -f compose.openfga.yaml up -d
+
+# Restart the wasmCloud stack with OpenFGA
+restart: down up
 
 # Restart the wasmCloud stack
-restart:
-    cd ./docker && docker compose restart
+restart-no-openfga: down up-no-openfga
 
 # Stop wasmCloud stack
 down:
     cd ./docker && docker compose down
+
+# Run the wash (wasmCloud Shell) UI dashboard:
+ui:
+    wash ui

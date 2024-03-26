@@ -4,7 +4,6 @@
 
 set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
 set dotenv-load := true
-export CARGO_TERM_COLOR := "always"
 
 # Show available commands
 default:
@@ -13,7 +12,6 @@ default:
 # Deploy this component
 deploy:
     wash app deploy wadm.yaml
-
 
 # Build this component
 build:

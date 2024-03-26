@@ -1,0 +1,9 @@
+name = "http-hello-world-rust"
+language = "rust"
+type = "actor"
+version = "0.1.0"
+
+[actor]
+wit_world = "hello-rust"
+wasm_target = "wasm32-wasi-preview2"
+destination = "../build/http_hello_world_rust.wasm"

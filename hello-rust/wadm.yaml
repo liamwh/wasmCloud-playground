@@ -8,11 +8,11 @@ metadata:
     experimental: true
 spec:
   components:
-    - name: http-hello-world
+    - name: http-hello-world-rust
       type: actor
       properties:
         # NOTE: This path is for inside the wasmCloud container, the file must be mounted inside.
-        image: file:///build/http_hello_world_s.wasm
+        image: file:///build/http_hello_world_rust.wasm
       traits:
         # Govern the spread/scheduling of the actor
         - type: spreadscaler

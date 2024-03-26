@@ -1,19 +1,29 @@
 package main
 
 import (
+	openfga "github.com/openfga/go-sdk"
 	http "github.com/wasmcloud/wasmcloud/examples/golang/actors/http-hello-world/gen"
 )
 
 // Helper type aliases to make code more readable
-type HttpRequest = http.ExportsWasiHttp0_2_0_IncomingHandlerIncomingRequest
-type HttpResponseWriter = http.ExportsWasiHttp0_2_0_IncomingHandlerResponseOutparam
-type HttpOutgoingResponse = http.WasiHttp0_2_0_TypesOutgoingResponse
-type HttpError = http.WasiHttp0_2_0_TypesErrorCode
+type (
+	HttpRequest          = http.ExportsWasiHttp0_2_0_IncomingHandlerIncomingRequest
+	HttpResponseWriter   = http.ExportsWasiHttp0_2_0_IncomingHandlerResponseOutparam
+	HttpOutgoingResponse = http.WasiHttp0_2_0_TypesOutgoingResponse
+	HttpError            = http.WasiHttp0_2_0_TypesErrorCode
+)
 
 type HttpServer struct{}
 
 func init() {
 	httpserver := HttpServer{}
+	configuration, err := openfga.NewConfiguration(openfga.Configuration{
+		ApiUrl: "http://openfga:8080",
+		// ApiUrl:               os.Getenv("FGA_API_URL"), // required, e.g. https://api.fga.example
+	})
+	if err != nil {
+		panic(err)
+	}
 	// Set the incoming handler struct to HttpServer
 	http.SetExportsWasiHttp0_2_0_IncomingHandler(httpserver)
 }

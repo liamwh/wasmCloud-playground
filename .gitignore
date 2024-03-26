@@ -3,6 +3,7 @@ Cargo.locks
 
 node_modules/
 
+**/keys/
 # Ignore local DB files
 *.db
 *.db-*

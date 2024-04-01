@@ -1,7 +1,6 @@
 package main
 
 import (
-	// http "github.com/liamwh/wasmcloud-playground/examples/golang/actors/http-hello-world/gen"
 	http "github.com/liamwh/wasmCloud-playground/hello-go/gen"
 )
 

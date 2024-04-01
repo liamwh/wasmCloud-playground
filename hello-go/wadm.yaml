@@ -13,6 +13,8 @@ spec:
       properties:
         # NOTE: This path is for inside the wasmCloud container, the file must be mounted inside.
         image: file:///build/http_hello_world_go.wasm
+        config:
+          test-key: test-value
       traits:
         # Govern the spread/scheduling of the actor
         - type: spreadscaler
@@ -26,8 +28,6 @@ spec:
             values:
               ADDRESS: 0.0.0.0:8062
               test-key: test-value
-          config:
-            test-key: test-value
 
     # Add a capability provider that mediates HTTP access
     - name: httpserver

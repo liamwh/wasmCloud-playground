@@ -9,27 +9,23 @@ set dotenv-load := true
 default:
     @just --list --justfile {{justfile()}}
 
-# Deploy this component idempotently
-deploy:
-    wash app put wadm.yaml
-
 # Build this component
 build:
     wash build
 
 # Undeploy the go actor
-undeploy-go:
+undeploy:
     wash app undeploy tinygo-http-hello-world && wash app delete tinygo-http-hello-world --delete-all
     wash stop actor http-hello-world-go
 
 # Deploy the go actor. It uses the wash "put" command under the hood, as "wash put" is idempotent and "wash deploy" isn't.
-deploy-go: build-go
+deploy: build
     wash app deploy wadm.yaml
 
 # Build the go actor
-build-go:
+build:
     wash build
 
 # Cleans the built files of the go actor
-clean-go:
+clean:
     rm -rf gen/* && rm -rf ./build/*

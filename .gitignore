@@ -3,7 +3,7 @@ Cargo.locks
 
 node_modules/
 
-# Ignore 
+# Ignore
 _wash
 **/keys/
 

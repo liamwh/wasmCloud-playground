@@ -9,10 +9,27 @@ set dotenv-load := true
 default:
     @just --list --justfile {{justfile()}}
 
-# Deploy this component
+# Deploy this rust component
 deploy:
     wash app deploy wadm.yaml
 
-# Build this component
+# Build this rust component
 build:
     wash build
+
+# Undeploy the rust actor
+undeploy-rust:
+    wash app undeploy rust-http-hello-world && wash app delete rust-http-hello-world --delete-all
+    wash stop actor http-hello-world-rust
+
+# Deploy the rust component.
+deploy-rust: build-rust
+    wash app deploy wadm.yaml
+
+# Build the rust component
+build-rust:
+    wash build
+
+# Cleans the built files of the rust
+clean-rust:
+    rm -rf gen/*

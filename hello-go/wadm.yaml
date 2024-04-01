@@ -25,6 +25,9 @@ spec:
             target: httpserver
             values:
               ADDRESS: 0.0.0.0:8062
+              test-key: test-value
+          config:
+            test-key: test-value
 
     # Add a capability provider that mediates HTTP access
     - name: httpserver

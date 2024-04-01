@@ -1,0 +1,35 @@
+#!/usr/bin/env -S just --justfile
+# ^ A shebang isn't required, but allows a justfile to be executed
+#   like a script, with `./justfile test`, for example.
+
+set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
+set dotenv-load := true
+
+# Show available commands
+default:
+    @just --list --justfile {{justfile()}}
+
+# Deploy this component idempotently
+deploy:
+    wash app put wadm.yaml
+
+# Build this component
+build:
+    wash build
+
+# Undeploy the go actor
+undeploy-go:
+    wash app undeploy tinygo-http-hello-world && wash app delete tinygo-http-hello-world --delete-all
+    wash stop actor http-hello-world-go
+
+# Deploy the go actor. It uses the wash "put" command under the hood, as "wash put" is idempotent and "wash deploy" isn't.
+deploy-go: build-go
+    wash app deploy wadm.yaml
+
+# Build the go actor
+build-go:
+    wash build
+
+# Cleans the built files of the go actor
+clean-go:
+    rm -rf gen/* && rm -rf ./build/*
